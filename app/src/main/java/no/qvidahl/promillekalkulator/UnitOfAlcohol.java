@@ -8,14 +8,14 @@ public class UnitOfAlcohol {
 
     private String name; // Feks "Juleøl", "Rødvin"
     private float alcoholAmount; // Alkoholmengde i gram
-    private float fluidAmount; // Væskemengde i cl
+    private float unitSize; // Væskemengde i cl
     private float strength; // Alkoholprosent
 
     public static UnitOfAlcohol() {
         // Constructor for klassen. Lager en tom enhet.
         this.name = "";
         this.alcoholAmount = 0.0;
-        this.fluidAmount = 0.0;
+        this.unitSize = 0.0;
         this.strength = 0.0;
     }
 
@@ -35,12 +35,12 @@ public class UnitOfAlcohol {
         this.alcoholAmount = alcoholAmount;
     }
 
-    public static float getFluidAmount() {
-        return this.fluidAmount;
+    public static float getUnitSize() {
+        return this.unitSize;
     }
 
-    public static void setFluidAmount(float fluidAmount) {
-        this.fluidAmount = fluidAmount;
+    public static void setUnitSize(float fluidAmount) {
+        this.unitSize = fluidAmount;
     }
 
     public static float getStrength() {

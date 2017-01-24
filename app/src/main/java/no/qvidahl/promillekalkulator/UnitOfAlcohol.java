@@ -19,6 +19,13 @@ public class UnitOfAlcohol {
         this.strength = 0.0;
     }
 
+    public static UnitOfAlcohol(String name, float alcoholAmount, float unitSize, float strength) {
+        this.name = name;
+        this.alcoholAmount = alcoholAmount;
+        this.unitSize = unitSize;
+        this.strength = strength;
+    }
+
     public static String getName() {
         return this.name;
     }

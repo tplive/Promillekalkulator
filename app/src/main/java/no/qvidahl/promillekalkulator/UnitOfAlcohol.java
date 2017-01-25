@@ -1,5 +1,7 @@
 package no.qvidahl.promillekalkulator;
 
+import java.util.Date;
+
 /**
  * Created by Thomas Qvidahl on 24.01.2017.
  */
@@ -7,11 +9,12 @@ package no.qvidahl.promillekalkulator;
 public class UnitOfAlcohol {
 
     private String name; // Feks "Juleøl", "Rødvin"
-    private float alcoholAmount; // Alkoholmengde i gram
-    private float unitSize; // Væskemengde i cl
-    private float strength; // Alkoholprosent
+    private double alcoholAmount; // Alkoholmengde i gram
+    private double unitSize; // Væskemengde i cl
+    private double strength; // Alkoholprosent
+    private Date consumed; // Tidspunkt for inntak
 
-    public static UnitOfAlcohol() {
+    public UnitOfAlcohol() {
         // Constructor for klassen. Lager en tom enhet.
         this.name = "";
         this.alcoholAmount = 0.0;
@@ -19,42 +22,48 @@ public class UnitOfAlcohol {
         this.strength = 0.0;
     }
 
-    public static UnitOfAlcohol(String name, float alcoholAmount, float unitSize, float strength) {
+    public UnitOfAlcohol(String name, double alcoholAmount, double unitSize, double strength) {
         this.name = name;
         this.alcoholAmount = alcoholAmount;
         this.unitSize = unitSize;
         this.strength = strength;
     }
 
-    public static String getName() {
+    public static void remainingAlcohol(Date timestamp) {
+
+        // TODO Beregn gjenstående alkoholmengde i gram for denne enheten.
+
+    }
+
+    public String getName() {
         return this.name;
     }
 
-    public static void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public static float getAlcoholAmount() {
+    public double getAlcoholAmount() {
         return this.alcoholAmount;
     }
 
-    public static void setAlcoholAmount(float alcoholAmount) {
+    public void setAlcoholAmount(double alcoholAmount) {
         this.alcoholAmount = alcoholAmount;
     }
 
-    public static float getUnitSize() {
+    public double getUnitSize() {
         return this.unitSize;
     }
 
-    public static void setUnitSize(float fluidAmount) {
+    public void setUnitSize(double fluidAmount) {
         this.unitSize = fluidAmount;
     }
 
-    public static float getStrength() {
+    public double getStrength() {
         return this.strength;
     }
 
-    public static void setStrength(float strength) {
+    public void setStrength(double strength) {
         this.strength = strength;
     }
 

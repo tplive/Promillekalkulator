@@ -13,9 +13,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final double promille = 0.19;
+        final String promilleTekst = String.valueOf(promille);
 
         mPromilleTextView = (TextView)findViewById(R.id.promilleVerdi);
-        mPromilleTextView.setText(String.valueOf(promille));
+        mPromilleTextView.setText(String.format("%s o/oo", promilleTekst));
 
     }
 }

@@ -22,19 +22,22 @@
             android:text="@string/btnBeer_Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnBeer" />
+            android:id="@+id/btnBeer"
+            android:onClick="btnBeerClick" />
 
         <Button
             android:text="@string/btnWine_Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnWine" />
+            android:id="@+id/btnWine"
+            android:onClick="btnWineClick" />
 
         <Button
             android:text="@string/btnSpirit_Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnSpirit" />
+            android:id="@+id/btnSpirit"
+            android:onClick="btnSpiritClick" />
     </LinearLayout>
 
     <TextView

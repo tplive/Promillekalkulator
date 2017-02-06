@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class UnitOfAlcohol {
 
-    private String name; // Feks "Juleøl", "Rødvin"
+    private String name; // Feks "Beer", "Wine"
     private double alcoholAmount; // Alkoholmengde i gram
     private double unitSize; // Væskemengde i cl
     private double strength; // Alkoholprosent

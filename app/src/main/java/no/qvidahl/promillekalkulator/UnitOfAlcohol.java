@@ -6,8 +6,13 @@ import java.util.Date;
  * Created by Thomas Qvidahl on 24.01.2017.
  */
 
-public class UnitOfAlcohol {
+class UnitOfAlcohol {
 
+    /**
+     * @param name String containing the name of the beverage.
+     * @param alcoholAmount Amount of alcohol in grams.
+     *
+     */
     private String name; // Feks "Beer", "Wine"
     private double alcoholAmount; // Alkoholmengde i gram
     private double unitSize; // Væskemengde i cl

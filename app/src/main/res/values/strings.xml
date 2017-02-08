@@ -77,4 +77,8 @@
     <string name="btnBeer_Text">Beer 4.5% alc</string>
     <string name="btnWine_Text">Wine 14% alc</string>
     <string name="btnSpirit_Text">Spirits 40% alc</string>
+    <string name="toggleKjonn">o7</string>
+    <string name="male">Mann</string>
+    <string name="female">Kvinne</string>
+    <string name="your_weight_text">Your Weight:</string>
 </resources>

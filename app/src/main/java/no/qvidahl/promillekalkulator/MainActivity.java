@@ -126,12 +126,14 @@ public class MainActivity extends AppCompatActivity {
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 hoursPassed = seekBar.getProgress();
             }
-        }
+
+            public void onProgressChanged(SeekBar seekBar, int i, boolean isIt) {
+                //TODO
+            }
+        });
     }
-        );
 
 }

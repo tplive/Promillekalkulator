@@ -1,7 +1,9 @@
 package no.qvidahl.promillekalkulator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -12,20 +14,30 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     private TextView mPromilleTextView;
     private boolean isMan = true;
-    private double remainingAlcohol = 0.0;
+    private double consumedAlcohol = 0.0;
+    private double weight = 80;
+    private int hoursPassed = 3;
 
     private Button btnBeer;
     private Button btnWine;
     private Button btnSpirit;
     private ToggleButton btnSexChange; //https://developer.android.com/guide/topics/ui/controls/togglebutton.html
 
-    DecimalFormat mNumberFormat = new DecimalFormat("#.##");
-    final double promille = Math.random();
-    final String promilleTekst = String.valueOf(mNumberFormat.format(promille));
 
-    protected double calculateBloodAlcoholLevel(double weight, boolean isMan, double remainingAmount, double secondsSinceStart) {
+
+    protected String promilleTekst(double promille) {
+
+        DecimalFormat mNumberFormat = new DecimalFormat("#.##");
+        String formatted = mNumberFormat.format(promille);
+        return String.format("%s ‰", formatted);
+
+    }
+
+    protected double calculateBloodAlcoholLevel(double weight, boolean isMan, double consumedAmount, double hoursSinceStart) {
 
         double bloodAlcoholLevel;
         // Alkoholen fordeler seg i 70% av menns kroppsvekt, 60% av kvinners
@@ -34,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
         }else {
             weight = weight * 0.6;
         }
-
-        bloodAlcoholLevel = remainingAmount / weight - (0.15 * 3600 * secondsSinceStart);
+        // Promillen er antall gram alkohol inntatt delt på kjønnsjustert vekt - 0,15 gram pr time
+        bloodAlcoholLevel = consumedAmount / weight - (0.15 * hoursSinceStart);
 
         if (bloodAlcoholLevel <= 0) {
             bloodAlcoholLevel = 0;
@@ -52,28 +64,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-        UnitOfAlcohol beer = new UnitOfAlcohol("Beer", 15, 33, 4.5);
-        UnitOfAlcohol wine = new UnitOfAlcohol("Wine", 15, 25, 14);
-        UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
+        final UnitOfAlcohol beer = new UnitOfAlcohol("Beer", 15, 33, 4.5);
+        final UnitOfAlcohol wine = new UnitOfAlcohol("Wine", 15, 25, 14);
+        final UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
 
         mPromilleTextView = (TextView)findViewById(R.id.promilleVerdi);
-        mPromilleTextView.setText(String.format("%s ‰", promilleTekst));
+        mPromilleTextView.setText(promilleTekst(3.4567));
 
         btnBeer = (Button)findViewById(R.id.btnBeer);
         btnBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Legg til alkoholen fra en øl til promilleberegningen.
-                // Beregn promillen på nytt.
+                consumedAlcohol = consumedAlcohol + beer.getAlcoholAmount();
+                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
             }
         });
         btnWine = (Button)findViewById(R.id.btnWine);
         btnWine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Legg til alkoholen fra ett glass vin til promilleberegningen
-                // Beregn promillen på nytt.
+                consumedAlcohol = consumedAlcohol + wine.getAlcoholAmount();
+                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
             }
         });
 
@@ -81,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
         btnSpirit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO Legg til alkoholen fra et glass sprit til promilleberegningen
-                // Beregn promillen på nytt.
+                consumedAlcohol = consumedAlcohol + spirit.getAlcoholAmount();
+                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
             }
         });
 
@@ -92,8 +103,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     isMan = true;
+                    Log.i(TAG, "Satt til Mann");
                 }else {
                     isMan = false;
+                    Log.i(TAG, "Satt til Kvinne");
                 }
                 //TODO Bytt kjønn. Endrer beregningsgrunnlaget
                 // Beregn promillen på nytt.

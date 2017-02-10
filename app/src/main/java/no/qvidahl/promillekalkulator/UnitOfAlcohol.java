@@ -9,15 +9,12 @@ import java.util.Date;
 class UnitOfAlcohol {
 
     /**
-     * @param name String containing the name of the beverage.
-     * @param alcoholAmount Amount of alcohol in grams.
      *
      */
     private String name; // Feks "Beer", "Wine"
     private double alcoholAmount; // Alkoholmengde i gram
     private double unitSize; // Væskemengde i cl
     private double strength; // Alkoholprosent
-    private Date consumed; // Tidspunkt for inntak
 
     public UnitOfAlcohol() {
         // Constructor for klassen. Lager en tom enhet.
@@ -27,18 +24,13 @@ class UnitOfAlcohol {
         this.strength = 0.0;
     }
 
-    public UnitOfAlcohol(String name, double alcoholAmount, double unitSize, double strength) {
+    UnitOfAlcohol(String name, double alcoholAmount, double unitSize, double strength) {
         this.name = name;
         this.alcoholAmount = alcoholAmount;
         this.unitSize = unitSize;
         this.strength = strength;
     }
 
-    public static void remainingAlcohol(Date timestamp) {
-
-        // TODO Beregn gjenstående alkoholmengde i gram for denne enheten.
-
-    }
 
     public String getName() {
         return this.name;
@@ -48,7 +40,7 @@ class UnitOfAlcohol {
         this.name = name;
     }
 
-    public double getAlcoholAmount() {
+    double getAlcoholAmount() {
         return this.alcoholAmount;
     }
 

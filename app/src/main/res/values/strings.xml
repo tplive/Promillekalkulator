@@ -81,4 +81,8 @@
     <string name="male">Mann</string>
     <string name="female">Kvinne</string>
     <string name="your_weight_text">Your Weight:</string>
+    <string name="capital_off">Kvinne</string>
+    <string name="capital_on">Mann</string>
+    <string name="femaleText">Kvinne</string>
+    <string name="maleText">Mann</string>
 </resources>

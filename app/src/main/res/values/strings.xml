@@ -78,11 +78,13 @@
     <string name="btnWine_Text">Wine 14% alc</string>
     <string name="btnSpirit_Text">Spirits 40% alc</string>
     <string name="toggleKjonn">o7</string>
-    <string name="male">Mann</string>
-    <string name="female">Kvinne</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
     <string name="your_weight_text">Your Weight:</string>
-    <string name="capital_off">Kvinne</string>
-    <string name="capital_on">Mann</string>
-    <string name="femaleText">Kvinne</string>
-    <string name="maleText">Mann</string>
+    <string name="capital_off">Female</string>
+    <string name="capital_on">Male</string>
+    <string name="femaleText">Female</string>
+    <string name="maleText">Male</string>
+    <string name="timerTekst">Timer</string>
+    <string name="hoursText">Hours</string>
 </resources>

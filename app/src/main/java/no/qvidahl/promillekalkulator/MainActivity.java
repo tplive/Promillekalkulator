@@ -1,7 +1,5 @@
 package no.qvidahl.promillekalkulator;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +9,6 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,12 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSpirit;
     private ToggleButton btnSexChange; //https://developer.android.com/guide/topics/ui/controls/togglebutton.html
     private SeekBar seekBar;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient mClient;
 
+    protected void updateTextViewPromille() {
+        mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed)));
+    }
 
     protected String promilleTekst(double promille) {
 
@@ -70,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
         final UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
 
         mPromilleTextView = (TextView) findViewById(R.id.promilleVerdi);
-        mPromilleTextView.setText(promilleTekst(3.4567));
+        mPromilleTextView.setText(promilleTekst(0.0));
 
         btnBeer = (Button) findViewById(R.id.btnBeer);
         btnBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + beer.getAlcoholAmount();
-                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
+                updateTextViewPromille();
             }
         });
         btnWine = (Button) findViewById(R.id.btnWine);
@@ -96,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + wine.getAlcoholAmount();
-                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
+                updateTextViewPromille();
             }
         });
 
@@ -105,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + spirit.getAlcoholAmount();
-                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
+                updateTextViewPromille();
             }
         });
 
@@ -120,18 +112,28 @@ public class MainActivity extends AppCompatActivity {
                     isMan = false;
                     Log.i(TAG, "Satt til Kvinne");
                 }
-                mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(weight, isMan, consumedAlcohol, hoursPassed)));
+                updateTextViewPromille();
             }
         });
+
+
 
         seekBar = (SeekBar) findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 hoursPassed = seekBar.getProgress();
+                updateTextViewPromille();
             }
 
             public void onProgressChanged(SeekBar seekBar, int i, boolean isIt) {
-                //TODO
+                hoursPassed = seekBar.getProgress();
+                updateTextViewPromille();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                hoursPassed = seekBar.getProgress();
+                updateTextViewPromille();
             }
         });
     }

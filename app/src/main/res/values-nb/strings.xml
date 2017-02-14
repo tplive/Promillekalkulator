@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Promillekalkulator</string>
+    <string name="btnBeer_Text">Øl 4,5%</string>
+    <string name="btnSpirit_Text">Sprit 4,5%</string>
+    <string name="btnWine_Text">Vin 14%</string>
+    <string name="capital_off">Kvinne</string>
+    <string name="capital_on">Mann</string>
+    <string name="female">Kvinne</string>
+    <string name="femaleText">Kvinne</string>
+    <string name="hoursText">Timer</string>
+    <string name="male">Mann</string>
+    <string name="maleText">Mann</string>
+</resources>

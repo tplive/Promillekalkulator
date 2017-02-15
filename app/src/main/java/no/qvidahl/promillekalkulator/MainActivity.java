@@ -16,10 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     private TextView mPromilleTextView;
+    private TextView mHours;
     private boolean isMan = true;
     private double consumedAlcohol = 0.0;
-    private double weight = 80;
-    private int hoursPassed = 3;
+    private double weight = 75;
+    private int hoursPassed = 0;
 
     private Button btnBeer;
     private Button btnWine;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateTextViewPromille() {
         mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed)));
+
     }
 
     protected String promilleTekst(double promille) {
@@ -72,10 +74,14 @@ public class MainActivity extends AppCompatActivity {
         final UnitOfAlcohol wine = new UnitOfAlcohol("Wine", 15, 25, 14);
         final UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
 
+        mHours = (TextView) findViewById(R.id.tvHours);
+        mHours.setText(hoursPassed + "");
+
         mPromilleTextView = (TextView) findViewById(R.id.promilleVerdi);
         mPromilleTextView.setText(promilleTekst(0.0));
 
         btnBeer = (Button) findViewById(R.id.btnBeer);
+        btnBeer.setText(beer.getName() + " " + beer.getStrength() + "%");
         btnBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         btnWine = (Button) findViewById(R.id.btnWine);
+        btnWine.setText(wine.getName() + " " + wine.getStrength() + "%");
         btnWine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnSpirit = (Button) findViewById(R.id.btnSpirit);
+        btnSpirit.setText(spirit.getName() + " " + spirit.getStrength() + "%");
         btnSpirit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

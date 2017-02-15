@@ -87,4 +87,5 @@
     <string name="maleText">Male</string>
     <string name="timerTekst">Timer</string>
     <string name="hoursText">Hours</string>
+    <string name="kilos">kgs</string>
 </resources>

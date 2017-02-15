@@ -88,4 +88,5 @@
     <string name="timerTekst">Timer</string>
     <string name="hoursText">Hours</string>
     <string name="kilos">kgs</string>
+    <string name="resetButton">Reset</string>
 </resources>

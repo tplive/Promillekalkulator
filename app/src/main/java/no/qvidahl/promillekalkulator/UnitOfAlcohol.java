@@ -15,6 +15,7 @@ class UnitOfAlcohol {
     private double alcoholAmount; // Alkoholmengde i gram
     private double unitSize; // Væskemengde i cl
     private double strength; // Alkoholprosent
+    private int consumedNumber; // Antall konsumert
 
     public UnitOfAlcohol() {
         // Constructor for klassen. Lager en tom enhet.
@@ -22,6 +23,7 @@ class UnitOfAlcohol {
         this.alcoholAmount = 0.0;
         this.unitSize = 0.0;
         this.strength = 0.0;
+        this.consumedNumber = 0;
     }
 
     UnitOfAlcohol(String name, double alcoholAmount, double unitSize, double strength) {
@@ -29,6 +31,7 @@ class UnitOfAlcohol {
         this.alcoholAmount = alcoholAmount;
         this.unitSize = unitSize;
         this.strength = strength;
+        this.consumedNumber = 0;
     }
 
 
@@ -64,4 +67,13 @@ class UnitOfAlcohol {
         this.strength = strength;
     }
 
+    public int getConsumedNumber() {
+        return this.consumedNumber;
+    }
+    public void consumeOne() {
+        this.consumedNumber++;
+    }
+    public void resetConsumed() {
+        this.consumedNumber = 0;
+    }
 }

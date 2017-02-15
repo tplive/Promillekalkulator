@@ -95,6 +95,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnSpirit" />
+
+        <Button
+            android:text="@string/resetButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnReset" />
     </LinearLayout>
 
     <TextView

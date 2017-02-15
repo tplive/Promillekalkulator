@@ -14,4 +14,5 @@
     <string name="kilos">kg</string>
     <string name="your_weight_text">Din vekt:</string>
     <string name="timerTekst">Hours</string>
+    <string name="resetButton">Reset</string>
 </resources>

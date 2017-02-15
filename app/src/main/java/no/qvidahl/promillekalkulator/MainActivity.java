@@ -2,6 +2,8 @@ package no.qvidahl.promillekalkulator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,25 +15,40 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Logging
     private static final String TAG = "MainActivity";
 
+    // UI elements
     private TextView mPromilleTextView;
     private TextView mHours;
     private TextView mWeight;
-    private boolean isMan = true;
+    private Button btnBeer;
+    private Button btnWine;
+    private Button btnSpirit;
+    private Button btnReset;
+    private ToggleButton btnSexChange; //https://developer.android.com/guide/topics/ui/controls/togglebutton.html
+    private SeekBar seekBar;
+
+    // User variables, initialize app
+    private boolean isMan = false;
     private double consumedAlcohol = 0.0;
     private double weight = 65;
     private int hoursPassed = 0;
 
-    private Button btnBeer;
-    private Button btnWine;
-    private Button btnSpirit;
-    private ToggleButton btnSexChange; //https://developer.android.com/guide/topics/ui/controls/togglebutton.html
-    private SeekBar seekBar;
-
-    protected void updateTextViewPromille() {
+    protected void updateUI() {
         mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed)));
         mHours.setText(String.format("%s hours", this.hoursPassed));
+        mWeight.setText(String.valueOf(this.weight));
+        seekBar.setProgress(this.hoursPassed);
+
+    }
+
+    protected void resetApp() {
+        this.hoursPassed = 0;
+        this.weight = 65;
+        this.consumedAlcohol = 0.0;
+        this.isMan = false;
+        updateUI();
     }
 
     protected String promilleTekst(double promille) {
@@ -78,37 +95,81 @@ public class MainActivity extends AppCompatActivity {
         mHours = (TextView) findViewById(R.id.tvHours);
 
         mWeight = (TextView) findViewById(R.id.editText_Weight);
-        mWeight.setText("65");
+        mWeight.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // http://stackoverflow.com/questions/7474319/how-to-parse-a-double-from-edittext-to-textview-android
+                String strWeight = mWeight.getText().toString();
+
+                if (strWeight == null || strWeight.isEmpty()) {
+                    weight = 0.0;
+                }else {
+                    weight = Double.parseDouble(strWeight.toString());
+
+                    if (weight <= 1.0)
+                        weight = 1.0;
+                    if (weight >= 300)
+                        weight = 300;
+                }
+
+                }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         mPromilleTextView = (TextView) findViewById(R.id.promilleVerdi);
         mPromilleTextView.setText(promilleTekst(0.0));
 
         btnBeer = (Button) findViewById(R.id.btnBeer);
-        btnBeer.setText(beer.getName() + " " + beer.getStrength() + "%");
+        if (beer.getConsumedNumber() > 0) {
+            btnBeer.setText(beer.getName() + " " + beer.getStrength() + "% " + beer.getConsumedNumber());
+        }else {
+            btnBeer.setText(beer.getName() + " " + beer.getStrength() + "%");
+        }
         btnBeer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + beer.getAlcoholAmount();
-                updateTextViewPromille();
+                beer.consumeOne();
+                updateUI();
             }
         });
         btnWine = (Button) findViewById(R.id.btnWine);
-        btnWine.setText(wine.getName() + " " + wine.getStrength() + "%");
+        if (wine.getConsumedNumber() > 0) {
+            btnWine.setText(wine.getName() + " " + wine.getStrength() + "% " + wine.getConsumedNumber());
+        }else {
+            btnWine.setText(wine.getName() + " " + wine.getStrength() + "%");
+        }
         btnWine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + wine.getAlcoholAmount();
-                updateTextViewPromille();
+                wine.consumeOne();
+                updateUI();
             }
         });
 
         btnSpirit = (Button) findViewById(R.id.btnSpirit);
-        btnSpirit.setText(spirit.getName() + " " + spirit.getStrength() + "%");
+        Log.i(TAG, String.valueOf(spirit.getConsumedNumber()));
+        if (spirit.getConsumedNumber() > 0) {
+            btnSpirit.setText(spirit.getName() + " " + spirit.getStrength() + "% " + spirit.getConsumedNumber());
+        }else {
+            btnSpirit.setText(spirit.getName() + " " + spirit.getStrength() + "%");
+        }
         btnSpirit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 consumedAlcohol = consumedAlcohol + spirit.getAlcoholAmount();
-                updateTextViewPromille();
+                spirit.consumeOne();
+                updateUI();
             }
         });
 
@@ -123,7 +184,15 @@ public class MainActivity extends AppCompatActivity {
                     isMan = false;
                     Log.i(TAG, "Satt til Kvinne");
                 }
-                updateTextViewPromille();
+                updateUI();
+            }
+        });
+
+        btnReset = (Button) findViewById(R.id.btnReset);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetApp();
             }
         });
 
@@ -133,18 +202,18 @@ public class MainActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 hoursPassed = seekBar.getProgress();
-                updateTextViewPromille();
+                updateUI();
             }
 
             public void onProgressChanged(SeekBar seekBar, int i, boolean isIt) {
                 hoursPassed = seekBar.getProgress();
-                updateTextViewPromille();
+                updateUI();
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 hoursPassed = seekBar.getProgress();
-                updateTextViewPromille();
+                updateUI();
             }
         });
     }

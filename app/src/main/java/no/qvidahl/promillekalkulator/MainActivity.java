@@ -17,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mPromilleTextView;
     private TextView mHours;
+    private TextView mWeight;
     private boolean isMan = true;
     private double consumedAlcohol = 0.0;
-    private double weight = 75;
+    private double weight = 65;
     private int hoursPassed = 0;
 
     private Button btnBeer;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateTextViewPromille() {
         mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed)));
-
+        mHours.setText(String.format("%s hours", this.hoursPassed));
     }
 
     protected String promilleTekst(double promille) {
@@ -75,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
         final UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
 
         mHours = (TextView) findViewById(R.id.tvHours);
-        mHours.setText(hoursPassed + "");
+
+        mWeight = (TextView) findViewById(R.id.editText_Weight);
+        mWeight.setText("65");
 
         mPromilleTextView = (TextView) findViewById(R.id.promilleVerdi);
         mPromilleTextView.setText(promilleTekst(0.0));

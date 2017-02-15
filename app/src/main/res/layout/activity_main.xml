@@ -66,6 +66,7 @@
                 android:id="@+id/textView4"
                 android:textAlignment="textEnd"
                 android:layout_weight="1" />
+
         </LinearLayout>
 
         <ToggleButton

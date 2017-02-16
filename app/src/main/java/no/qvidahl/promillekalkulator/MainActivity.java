@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         updateUI();
     }
 
+
     protected String promilleTekst(double promille) {
 
         DecimalFormat mNumberFormat = new DecimalFormat("#.##");
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putDouble("weight", this.weight);
         savedInstanceState.putDouble("consumedAlcohol", this.consumedAlcohol);
         savedInstanceState.putBoolean("isMan", this.isMan);
-        savedInstanceState.putDouble("promille", calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed));
+        //savedInstanceState.putDouble("promille", calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed));
 
     }
 
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         final UnitOfAlcohol beer = new UnitOfAlcohol("Beer", 15, 33, 4.5);
         final UnitOfAlcohol wine = new UnitOfAlcohol("Wine", 15, 25, 14);
-        final UnitOfAlcohol spirit = new UnitOfAlcohol("Spirit", 15, 4, 40);
+        final UnitOfAlcohol spirit = new UnitOfAlcohol("Shot", 15, 4, 40);
 
         mHours = (TextView) findViewById(R.id.tvHours);
 
@@ -233,6 +234,12 @@ public class MainActivity extends AppCompatActivity {
                 updateUI();
             }
         });
+
+
+
+        updateUI();
     }
+
+
 
 }

@@ -106,9 +106,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        final UnitOfAlcohol beer = new UnitOfAlcohol("Beer", 15, 33, 4.5);
-        final UnitOfAlcohol wine = new UnitOfAlcohol("Wine", 15, 25, 14);
-        final UnitOfAlcohol spirit = new UnitOfAlcohol("Shot", 15, 4, 40);
+        final UnitOfAlcohol beer = new UnitOfAlcohol((String) getResources().getText(R.string.btnBeer_Text), 15, 33, 4.5);
+        final UnitOfAlcohol wine = new UnitOfAlcohol((String) getResources().getText(R.string.btnWine_Text), 15, 25, 14);
+        final UnitOfAlcohol spirit = new UnitOfAlcohol((String) getResources().getText(R.string.btnSpirit_Text), 15, 4, 40);
 
         mHours = (TextView) findViewById(R.id.tvHours);
 

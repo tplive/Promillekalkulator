@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Promillekalkulator</string>
-    <string name="btnBeer_Text">Øl 4,5%</string>
-    <string name="btnSpirit_Text">Sprit 40%</string>
-    <string name="btnWine_Text">Vin 14%</string>
+    <string name="btnBeer_Text">Øl</string>
+    <string name="btnSpirit_Text">Shot</string>
+    <string name="btnWine_Text">Vin</string>
     <string name="capital_off">Kvinne</string>
     <string name="capital_on">Mann</string>
     <string name="female">Kvinne</string>

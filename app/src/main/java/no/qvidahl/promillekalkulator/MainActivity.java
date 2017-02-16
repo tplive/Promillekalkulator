@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSpirit;
     private Button btnReset;
     private ToggleButton btnSexChange; //https://developer.android.com/guide/topics/ui/controls/togglebutton.html
-    private SeekBar seekBar;
+    private SeekBar seekBarHours;
 
     // User variables, initialize app
     private boolean isMan = false;
@@ -37,10 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateUI() {
         mPromilleTextView.setText(promilleTekst(calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed)));
-        mHours.setText(String.format("%s hours", this.hoursPassed));
+        mHours.setText(String.format("%s Hours", this.hoursPassed));
         mWeight.setText(String.valueOf(this.weight));
-        seekBar.setProgress(this.hoursPassed);
-
+        seekBarHours.setProgress(this.hoursPassed);
     }
 
     protected void resetApp() {
@@ -80,11 +79,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt("hoursPassed", this.hoursPassed);
+        savedInstanceState.putDouble("weight", this.weight);
+        savedInstanceState.putDouble("consumedAlcohol", this.consumedAlcohol);
+        savedInstanceState.putBoolean("isMan", this.isMan);
+        savedInstanceState.putDouble("promille", calculateBloodAlcoholLevel(this.weight, this.isMan, this.consumedAlcohol, this.hoursPassed));
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            this.hoursPassed = savedInstanceState.getInt("hoursPassed");
+            this.weight = savedInstanceState.getDouble("weight");
+            this.consumedAlcohol = savedInstanceState.getDouble("consumedAlcohol");
+            this.isMan = savedInstanceState.getBoolean("isMan");
+        }
+
         setContentView(R.layout.activity_main);
 
 
@@ -198,8 +215,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarHours = (SeekBar) findViewById(R.id.seekBar);
+        seekBarHours.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 hoursPassed = seekBar.getProgress();
                 updateUI();

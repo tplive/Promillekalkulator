@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Promillekalkulator</string>
+    <string name="app_name">Blood Alcohol Level Calculator</string>
     <string name="promilleVerdi">0.0</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -77,7 +77,7 @@
     <string name="btnBeer_Text">Beer</string>
     <string name="btnWine_Text">Wine</string>
     <string name="btnSpirit_Text">Shot</string>
-    <string name="toggleKjonn">o7</string>
+    <string name="toggleKjonn">Toggle Sex</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="your_weight_text">Your Weight:</string>

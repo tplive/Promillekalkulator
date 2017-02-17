@@ -14,5 +14,7 @@
     <string name="kilos">kg</string>
     <string name="your_weight_text">Din vekt:</string>
     <string name="timerTekst">Hours</string>
-    <string name="resetButton">Reset</string>
+    <string name="resetButton">Nullstill</string>
+    <string name="title_activity_settings">Innstillinger</string>
+    <string name="toggleKjonn">Bytt kjønn</string>
 </resources>

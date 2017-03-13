@@ -12,15 +12,19 @@ https://www.fhi.no/historisk-arkiv/artikler/alkoholpromille---eksempler-pa-bere/
 
 https://www.fhi.no/ml/alkohologrusmidler/alkohol/alkohol-fakta/
 
+Brukergrensesnitt:
 Øverst: Promille nå (stor tekst, farget)
-Innstillinger: Kjønn, vekt. Lagre dette. Kan byttes "i fart"?
-Liste: Enheter inntatt, siste øverst.
-Innta ny enhet: Tre knapper; Øl, Vin, Sprit (med mengde og alkoholprosent)
+Slider: Antall timer siden inntak av alkoholen.
+Innstillinger: 
+* Bytt mellom mann/kvinne. 
+* Tast inn vekt.
+Enheter: Klikk på enhet for å legge den til inntak.
+Tre knapper; Øl, Vin, Sprit (med mengde og alkoholprosent)
+Appen beregner promille basert på hvor mange timer siden inntak.
 
-
-Appen beregner ny promille fortløpende og teller nedover.
-
-Må ha tidspunkt for inntak av hver enhet. Regner rest-promille etter hver loop, tar utgangspunkt i tidspunktet for den første drinken.
+Senere:
+Beregne "real-time" promille.
+Må ha tidspunkt for inntak av hver enhet. Regner rest-promille etter hver loop, tar utgangspunkt i tidspunktet for den første drinken. For å beregne hvor mye rest-promille er, må formelen trekke fra en andel rest-alkohol fra alle enheter samtidig, under antagelse at alle drinker forbrennes like fort..?
 Når en enhet er helt ute av kroppen (0 gram rest) skal den fjernes fra listen.
 
 Android UI design tutorial:

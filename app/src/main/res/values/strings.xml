@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Blood Alcohol Level Calculator</string>
+    <string name="app_name">Pro-Pro-Mille</string>
     <string name="promilleVerdi">0.0</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -85,8 +85,8 @@
     <string name="capital_on">Male</string>
     <string name="femaleText">Female</string>
     <string name="maleText">Male</string>
-    <string name="timerTekst">Timer</string>
-    <string name="hoursText">Hours</string>
+    <string name="timerTekst">Timer siden</string>
+    <string name="hoursText">Hours passed</string>
     <string name="kilos">kgs</string>
     <string name="resetButton">Reset</string>
 </resources>

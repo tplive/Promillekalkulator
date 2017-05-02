@@ -1,4 +1,4 @@
-package no.qvidahl.promillekalkulator;
+package no.qvidahl.propromille;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

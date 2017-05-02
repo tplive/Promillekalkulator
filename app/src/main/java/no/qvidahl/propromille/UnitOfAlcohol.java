@@ -1,6 +1,4 @@
-package no.qvidahl.promillekalkulator;
-
-import java.util.Date;
+package no.qvidahl.propromille;
 
 /**
  * Created by Thomas Qvidahl on 24.01.2017.

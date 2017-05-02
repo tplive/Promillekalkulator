@@ -1,4 +1,4 @@
-package no.qvidahl.promillekalkulator;
+package no.qvidahl.propromille;
 
 import org.junit.Test;
 

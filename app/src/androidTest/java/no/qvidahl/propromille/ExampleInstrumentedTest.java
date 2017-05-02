@@ -1,4 +1,4 @@
-package no.qvidahl.promillekalkulator;
+package no.qvidahl.propromille;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("no.qvidahl.promillekalkulator", appContext.getPackageName());
+        assertEquals("no.qvidahl.propromille", appContext.getPackageName());
     }
 }
